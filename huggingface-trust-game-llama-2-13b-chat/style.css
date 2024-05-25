@@ -1,0 +1,27 @@
+h1 {
+  text-align: center;
+  display: block;
+}
+
+#duplicate-button {
+  margin: auto;
+  color: white;
+  background: #1565c0;
+  border-radius: 100vh;
+}
+
+.chatbot {
+  width = 950px;
+}
+
+.contain {
+  max-width: 900px;
+  margin: auto;
+  padding-top: 1.5rem;
+}
+
+/* Hide the gradio footer*/
+footer {
+display: none !important;
+}
+
