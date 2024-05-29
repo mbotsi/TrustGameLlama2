@@ -91,6 +91,8 @@ if torch.cuda.is_available():
     tokenizer.use_default_system_prompt = False
 
 
+# for no LLM vs. 13B use e5390g38028 as database name 
+# for 13B vs. no LLM use e5390g37899 as database name 
 def fetch_personalized_data(externalID):
     try:
         # Connect to the database
@@ -104,97 +106,97 @@ def fetch_personalized_data(externalID):
             with conn.cursor() as cursor:
                 # Query to fetch relevant data from both tables based on externalID = externalID  
                 query = """
-                    SELECT e5390g38028_core.playerNr, 
-                           e5390g38028_core.groupNrStart, 
-                           e5390g38028_core.subjectNr, 
-                           e5390g38028_core.onPage, 
-                           e5390g38028_core.role,
-                           e5390g38028_session.externalID, 
-                           e5390g38028_decisions.initialCredit,
-                           e5390g38028_decisions.part,
-                           e5390g38028_decisions.transfer1,
-                           e5390g38028_decisions.tripledAmount1,
-                           e5390g38028_decisions.keptForSelf1,
-                           e5390g38028_decisions.returned1,
-                           e5390g38028_decisions.totalRound1, 
-                           e5390g38028_decisions.transfer2,
-                           e5390g38028_decisions.tripledAmount2,
-                           e5390g38028_decisions.keptForSelf2,
-                           e5390g38028_decisions.returned2,
-                           e5390g38028_decisions.totalRound2, 
-                           e5390g38028_decisions.transfer3, 
-                           e5390g38028_decisions.tripledAmount3, 
-                           e5390g38028_decisions.keptForSelf3, 
-                           e5390g38028_decisions.returned3, 
-                           e5390g38028_decisions.totalRound3, 
-                           e5390g38028_decisions.transfer4, 
-                           e5390g38028_decisions.tripledAmount4, 
-                           e5390g38028_decisions.keptForSelf4, 
-                           e5390g38028_decisions.returned4,
-                           e5390g38028_decisions.totalRound4, 
-                           e5390g38028_decisions.transfer5, 
-                           e5390g38028_decisions.tripledAmount5, 
-                           e5390g38028_decisions.keptForSelf5, 
-                           e5390g38028_decisions.returned5, 
-                           e5390g38028_decisions.totalRound5, 
-                           e5390g38028_decisions.transfer6, 
-                           e5390g38028_decisions.tripledAmount6, 
-                           e5390g38028_decisions.keptForSelf6
-                    FROM e5390g38028_core
-                    JOIN e5390g38028_session ON 
-                         e5390g38028_core.playerNr = e5390g38028_session.playerNr
-                    JOIN e5390g38028_decisions ON 
-                         e5390g38028_core.playerNr = e5390g38028_decisions.playerNr
-                    WHERE e5390g38028_session.externalID = %s
+                    SELECT e5390g37899_core.playerNr, 
+                           e5390g37899_core.groupNrStart, 
+                           e5390g37899_core.subjectNr, 
+                           e5390g37899_core.onPage, 
+                           e5390g37899_core.role,
+                           e5390g37899_session.externalID, 
+                           e5390g37899_decisions.initialCredit,
+                           e5390g37899_decisions.part,
+                           e5390g37899_decisions.transfer1,
+                           e5390g37899_decisions.tripledAmount1,
+                           e5390g37899_decisions.keptForSelf1,
+                           e5390g37899_decisions.returned1,
+                           e5390g37899_decisions.totalRound1, 
+                           e5390g37899_decisions.transfer2,
+                           e5390g37899_decisions.tripledAmount2,
+                           e5390g37899_decisions.keptForSelf2,
+                           e5390g37899_decisions.returned2,
+                           e5390g37899_decisions.totalRound2, 
+                           e5390g37899_decisions.transfer3, 
+                           e5390g37899_decisions.tripledAmount3, 
+                           e5390g37899_decisions.keptForSelf3, 
+                           e5390g37899_decisions.returned3, 
+                           e5390g37899_decisions.totalRound3, 
+                           e5390g37899_decisions.transfer4, 
+                           e5390g37899_decisions.tripledAmount4, 
+                           e5390g37899_decisions.keptForSelf4, 
+                           e5390g37899_decisions.returned4,
+                           e5390g37899_decisions.totalRound4, 
+                           e5390g37899_decisions.transfer5, 
+                           e5390g37899_decisions.tripledAmount5, 
+                           e5390g37899_decisions.keptForSelf5, 
+                           e5390g37899_decisions.returned5, 
+                           e5390g37899_decisions.totalRound5, 
+                           e5390g37899_decisions.transfer6, 
+                           e5390g37899_decisions.tripledAmount6, 
+                           e5390g37899_decisions.keptForSelf6
+                    FROM e5390g37899_core
+                    JOIN e5390g37899_session ON 
+                         e5390g37899_core.playerNr = e5390g37899_session.playerNr
+                    JOIN e5390g37899_decisions ON 
+                         e5390g37899_core.playerNr = e5390g37899_decisions.playerNr
+                    WHERE e5390g37899_session.externalID = %s
                     UNION ALL
-                    SELECT e5390g38028_core.playerNr, 
-                           e5390g38028_core.groupNrStart, 
-                           e5390g38028_core.subjectNr, 
-                           e5390g38028_core.onPage, 
-                           e5390g38028_core.role,
-                           e5390g38028_session.externalID, 
-                           e5390g38028_decisions.initialCredit,
-                           e5390g38028_decisions.part,
-                           e5390g38028_decisions.transfer1,
-                           e5390g38028_decisions.tripledAmount1,
-                           e5390g38028_decisions.keptForSelf1,
-                           e5390g38028_decisions.returned1,
-                           e5390g38028_decisions.totalRound1, 
-                           e5390g38028_decisions.transfer2,
-                           e5390g38028_decisions.tripledAmount2,
-                           e5390g38028_decisions.keptForSelf2,
-                           e5390g38028_decisions.returned2,
-                           e5390g38028_decisions.totalRound2, 
-                           e5390g38028_decisions.transfer3, 
-                           e5390g38028_decisions.tripledAmount3, 
-                           e5390g38028_decisions.keptForSelf3, 
-                           e5390g38028_decisions.returned3, 
-                           e5390g38028_decisions.totalRound3, 
-                           e5390g38028_decisions.transfer4, 
-                           e5390g38028_decisions.tripledAmount4, 
-                           e5390g38028_decisions.keptForSelf4, 
-                           e5390g38028_decisions.returned4,
-                           e5390g38028_decisions.totalRound4, 
-                           e5390g38028_decisions.transfer5, 
-                           e5390g38028_decisions.tripledAmount5, 
-                           e5390g38028_decisions.keptForSelf5, 
-                           e5390g38028_decisions.returned5, 
-                           e5390g38028_decisions.totalRound5, 
-                           e5390g38028_decisions.transfer6, 
-                           e5390g38028_decisions.tripledAmount6, 
-                           e5390g38028_decisions.keptForSelf6
-                    FROM e5390g38028_core
-                    JOIN e5390g38028_session ON 
-                        e5390g38028_core.playerNr = e5390g38028_session.playerNr
-                    JOIN e5390g38028_decisions 
-                        ON e5390g38028_core.playerNr = e5390g38028_decisions.playerNr
-                    WHERE e5390g38028_core.groupNrStart IN (
+                    SELECT e5390g37899_core.playerNr, 
+                           e5390g37899_core.groupNrStart, 
+                           e5390g37899_core.subjectNr, 
+                           e5390g37899_core.onPage, 
+                           e5390g37899_core.role,
+                           e5390g37899_session.externalID, 
+                           e5390g37899_decisions.initialCredit,
+                           e5390g37899_decisions.part,
+                           e5390g37899_decisions.transfer1,
+                           e5390g37899_decisions.tripledAmount1,
+                           e5390g37899_decisions.keptForSelf1,
+                           e5390g37899_decisions.returned1,
+                           e5390g37899_decisions.totalRound1, 
+                           e5390g37899_decisions.transfer2,
+                           e5390g37899_decisions.tripledAmount2,
+                           e5390g37899_decisions.keptForSelf2,
+                           e5390g37899_decisions.returned2,
+                           e5390g37899_decisions.totalRound2, 
+                           e5390g37899_decisions.transfer3, 
+                           e5390g37899_decisions.tripledAmount3, 
+                           e5390g37899_decisions.keptForSelf3, 
+                           e5390g37899_decisions.returned3, 
+                           e5390g37899_decisions.totalRound3, 
+                           e5390g37899_decisions.transfer4, 
+                           e5390g37899_decisions.tripledAmount4, 
+                           e5390g37899_decisions.keptForSelf4, 
+                           e5390g37899_decisions.returned4,
+                           e5390g37899_decisions.totalRound4, 
+                           e5390g37899_decisions.transfer5, 
+                           e5390g37899_decisions.tripledAmount5, 
+                           e5390g37899_decisions.keptForSelf5, 
+                           e5390g37899_decisions.returned5, 
+                           e5390g37899_decisions.totalRound5, 
+                           e5390g37899_decisions.transfer6, 
+                           e5390g37899_decisions.tripledAmount6, 
+                           e5390g37899_decisions.keptForSelf6
+                    FROM e5390g37899_core
+                    JOIN e5390g37899_session ON 
+                        e5390g37899_core.playerNr = e5390g37899_session.playerNr
+                    JOIN e5390g37899_decisions 
+                        ON e5390g37899_core.playerNr = e5390g37899_decisions.playerNr
+                    WHERE e5390g37899_core.groupNrStart IN (
                         SELECT DISTINCT groupNrStart
-                        FROM e5390g38028_core
-                        JOIN e5390g38028_session 
-                            ON e5390g38028_core.playerNr = e5390g38028_session.playerNr
-                        WHERE e5390g38028_session.externalID = %s
-                    ) AND e5390g38028_session.externalID != %s
+                        FROM e5390g37899_core
+                        JOIN e5390g37899_session 
+                            ON e5390g37899_core.playerNr = e5390g37899_session.playerNr
+                        WHERE e5390g37899_session.externalID = %s
+                    ) AND e5390g37899_session.externalID != %s
                 """
                 cursor.execute(query,(externalID, externalID, externalID))
                 # Fetch data row by row
@@ -277,7 +279,8 @@ def extract_variables(all_personalized_data, part):
     return extracted_data
 
 
-def map_onPage(onPage):
+# for no LLM vs. 13B 
+'''def map_onPage(onPage):
     # Define the mapping of onPage values to onPage_filename and onPage_prompt
     onPage_mapping_dict = {
         "stage412359.php": ("stage 6", "Round 1: Investor’s turn"),
@@ -292,6 +295,25 @@ def map_onPage(onPage):
         "stage412369.php": ("stage 16", "Round 2: Investor’s turn"),
         "stage412370.php": ("stage 17", "Round 3: Investor’s turn"),
         "stage412371.php": ("stage 18", "Round 3: Dealer’s turn"),
+    }
+''' 
+
+# for 13B vs. no LLM 
+def map_onPage(onPage):
+    # Define the mapping of onPage values to onPage_filename and onPage_prompt
+    onPage_mapping_dict = {
+        "stage411228.php": ("stage 6", "Round 1: Investor’s turn"),
+        "stage411229.php": ("stage 7", "Round 1: Dealer’s turn"),
+        "stage411230.php": ("stage 8", "Round 2: Investor’s turn"),
+        "stage411231.php": ("stage 9", "Round 2: Investor’s turn"),
+        "stage411232.php": ("stage 10", "Round 3: Investor’s turn"),
+        "stage411233.php": ("stage 11", "Round 3: Dealer’s turn"),
+        "stage411235.php": ("stage 13", "Round 1: Investor’s turn"),
+        "stage411236.php": ("stage 14", "Round 1: Dealer’s turn"),
+        "stage411237.php": ("stage 15", "Round 2: Investor’s turn"),
+        "stage411238.php": ("stage 16", "Round 2: Investor’s turn"),
+        "stage411239.php": ("stage 17", "Round 3: Investor’s turn"),
+        "stage411240.php": ("stage 18", "Round 3: Dealer’s turn"),
     }
     # Check if onPage is in the mapping
     if onPage in onPage_mapping_dict:
